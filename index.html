@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alom Hossain — Graphic Designer | Logo Design, Rebranding & Brand Identity Designer</title>
+  <meta name="description" content="Portfolio of Alom Hossain — Graphic Designer specializing in modern, minimal, and memorable logo design, rebranding, brand identity systems, and luxury stationery." />
+  <meta name="keywords" content="Alom Hossain, Graphic Designer, Logo Design, Rebranding, Brand Identity, Brand Guidelines, Stationery Design, Packaging Design" />
+  <meta name="author" content="Alom Hossain" />
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Alom Hossain — Brand Identity & Logo Designer" />
+  <meta property="og:description" content="Crafting distinctive logos and enduring brand identity systems for visionary companies." />
+  <meta property="og:image" content="/assets/projects/all-design-showcase.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/hero/alom-placeholder.svg" />
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="bg-background text-neutral-200 antialiased selection:bg-accent/30 selection:text-white relative">
+
+  <!-- ========================================== -->
+  <!-- 0. PRELOADER SCREEN -->
+  <!-- ========================================== -->
+  <div id="preloader" class="fixed inset-0 z-[10000] bg-background flex flex-col items-center justify-center pointer-events-auto">
+    <div class="relative flex flex-col items-center">
+      <div class="w-20 h-20 rounded-full border border-accent/40 overflow-hidden flex items-center justify-center relative mb-6 shadow-glow-sm">
+        <div class="absolute inset-0 rounded-full border-t-2 border-accent animate-spin z-10"></div>
+        <img src="/assets/hero/alom-hossain.jpg" alt="Alom Hossain" class="w-full h-full object-cover object-top opacity-90" />
+      </div>
+      <div class="text-xs font-mono uppercase tracking-[0.3em] text-neutral-400 animate-pulse">
+        ALOM HOSSAIN &middot; STUDIO
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 1. CUSTOM DUAL CURSOR -->
+  <!-- ========================================== -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- ========================================== -->
+  <!-- 2. THREE.JS 3D BACKGROUND CANVAS -->
+  <!-- ========================================== -->
+  <canvas id="bg-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-80"></canvas>
+
+  <!-- Ambient Dark Gradient / Vignette Overlay -->
+  <div class="fixed inset-0 pointer-events-none z-[1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-accent/5 via-transparent to-background/90"></div>
+  <div class="fixed inset-0 pointer-events-none z-[1] bg-noise opacity-30"></div>
+
+  <!-- ========================================== -->
+  <!-- 3. FIXED NAVIGATION BAR -->
+  <!-- ========================================== -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5 px-6 md:px-12 flex items-center justify-between">
+    <div class="max-w-7xl w-full mx-auto flex items-center justify-between glass-panel rounded-full px-6 py-3.5 border border-white/10 shadow-2xl">
+      
+      <!-- Brand Logo / Monogram -->
+      <a href="#" class="flex items-center gap-3 group magnetic">
+        <div class="w-10 h-10 rounded-full bg-surface-card border border-accent/60 overflow-hidden flex items-center justify-center shadow-glow-sm group-hover:scale-105 group-hover:border-accent transition-all duration-300">
+          <img src="/assets/hero/alom-hossain.jpg" alt="Alom Hossain" class="w-full h-full object-cover object-top" />
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-bold text-sm text-white tracking-wide group-hover:text-accent transition-colors">
+            Alom Hossain
+          </span>
+          <span class="text-[10px] font-mono text-neutral-400 tracking-wider uppercase">
+            Brand & Logo Designer
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-xs font-medium tracking-wider uppercase text-neutral-300">
+        <a href="#work" class="hover:text-accent transition-colors magnetic">Work</a>
+        <a href="#services" class="hover:text-accent transition-colors magnetic">Services</a>
+        <a href="#about" class="hover:text-accent transition-colors magnetic">About</a>
+        <a href="#process" class="hover:text-accent transition-colors magnetic">Process</a>
+        <a href="#contact" class="hover:text-accent transition-colors magnetic">Contact</a>
+      </nav>
+
+      <!-- Right Actions: Sound Toggle + Status + Primary CTA -->
+      <div class="flex items-center gap-4">
+        <!-- Audio Haptic Toggle -->
+        <button id="sound-toggle" aria-label="Toggle Sound Effects" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 text-neutral-400 hover:text-accent hover:border-accent/40 flex items-center justify-center transition-all magnetic" title="Toggle tactile sound">
+          <svg id="sound-icon" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+
+        <!-- Availability Badge -->
+        <div class="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-neutral-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Available for Projects</span>
+        </div>
+
+        <!-- Start a Project Button -->
+        <a href="https://www.upwork.com/freelancers/~01e5113de9a8f9e445" target="_blank" rel="noopener noreferrer" class="magnetic inline-flex items-center gap-2 px-5 py-2 rounded-full bg-accent text-neutral-950 font-semibold text-xs tracking-wider uppercase hover:bg-accent-hover hover:shadow-glow-sm transition-all duration-300 shadow-md">
+          <span>Hire on Upwork</span>
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M7 17l9.2-9.2M17 17V7H7"></path>
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" aria-label="Toggle Menu" class="md:hidden w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-background/95 backdrop-blur-2xl flex flex-col justify-center px-10 py-20">
+    <div class="flex flex-col gap-6 text-2xl font-display font-bold">
+      <a href="#work" class="mobile-nav-link text-neutral-300 hover:text-accent transition-colors">Selected Work</a>
+      <a href="#services" class="mobile-nav-link text-neutral-300 hover:text-accent transition-colors">Services & Expertise</a>
+      <a href="#about" class="mobile-nav-link text-neutral-300 hover:text-accent transition-colors">About Alom</a>
+      <a href="#process" class="mobile-nav-link text-neutral-300 hover:text-accent transition-colors">Design Process</a>
+      <a href="#contact" class="mobile-nav-link text-neutral-300 hover:text-accent transition-colors">Start a Project</a>
+    </div>
+    <div class="mt-12 pt-8 border-t border-white/10 flex flex-col gap-4">
+      <a href="https://www.upwork.com/freelancers/~01e5113de9a8f9e445" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full bg-accent text-neutral-950 font-bold text-center text-sm uppercase tracking-wider">
+        Hire on Upwork
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 4. HERO SECTION -->
+  <!-- ========================================== -->
+  <main class="relative z-10 pt-32 md:pt-44">
+    <section class="min-h-[85vh] flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left: Hero Headline & Narrative -->
+        <div class="lg:col-span-7 flex flex-col items-start gsap-reveal">
+          <!-- Mini pill tag -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-surface-card border border-accent/30 mb-8 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-accent"></span>
+            <span class="text-xs font-mono tracking-widest text-accent uppercase font-medium">
+              Logo Design &middot; Rebranding &middot; Brand Identity
+            </span>
+          </div>
+
+          <!-- Main Bold Headline with Editorial Serif Accents -->
+          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-6 font-display">
+            Crafting <span class="font-serif italic font-normal text-accent underline decoration-accent/40 decoration-1 underline-offset-8">Identities</span> &amp; Logos That Endure.
+          </h1>
+
+          <!-- Professional Intro -->
+          <p class="text-lg md:text-xl text-neutral-400 font-light leading-relaxed max-w-2xl mb-10">
+            I am <strong class="text-white font-medium">Alom Hossain</strong> — an independent brand identity designer translating complex business visions into timeless, mathematically harmonious logos and complete visual systems.
+          </p>
+
+          <!-- CTAs: Start a Project + View Work -->
+          <div class="flex flex-wrap items-center gap-4 mb-14 w-full sm:w-auto">
+            <a href="#contact" class="magnetic w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-accent text-neutral-950 font-bold text-sm tracking-wider uppercase hover:bg-accent-hover hover:shadow-glow-gold transition-all duration-300 shadow-xl">
+              <span>Start a Project</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+
+            <a href="#work" class="magnetic w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-surface-card border border-white/10 hover:border-accent/40 text-white font-semibold text-sm tracking-wider uppercase hover:bg-surface-elevated transition-all duration-300">
+              <span>View Selected Work</span>
+              <svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Plausible Professional Stats Bar -->
+          <div class="w-full grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/10">
+            <div>
+              <div class="text-3xl lg:text-4xl font-extrabold text-white font-display counter-val" data-target="150" data-suffix="+">150+</div>
+              <div class="text-xs font-mono uppercase text-neutral-400 tracking-wider mt-1">Logos Crafted</div>
+            </div>
+            <div>
+              <div class="text-3xl lg:text-4xl font-extrabold text-white font-display counter-val" data-target="80" data-suffix="+">80+</div>
+              <div class="text-xs font-mono uppercase text-neutral-400 tracking-wider mt-1">Brand Systems</div>
+            </div>
+            <div>
+              <div class="text-3xl lg:text-4xl font-extrabold text-white font-display counter-val" data-target="5" data-suffix="+ Yrs">5+ Yrs</div>
+              <div class="text-xs font-mono uppercase text-neutral-400 tracking-wider mt-1">Specialized Exp.</div>
+            </div>
+            <div>
+              <div class="text-3xl lg:text-4xl font-extrabold text-accent font-display counter-val" data-target="100" data-suffix="%">100%</div>
+              <div class="text-xs font-mono uppercase text-neutral-400 tracking-wider mt-1">Client Satisfaction</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 3D Interactive Floating Card with Photo Avatar Slot -->
+        <div class="lg:col-span-5 flex items-center justify-center gsap-reveal">
+          <div class="relative w-full max-w-[420px]"
+               data-tilt 
+               data-tilt-hero="true" 
+               data-tilt-max="18" 
+               data-tilt-scale="1.03" 
+               data-tilt-perspective="1200px">
+            
+            <!-- Main 3D Card Shell -->
+            <div class="relative rounded-3xl p-8 bg-surface-card/90 hairline-border-gold shadow-2xl backdrop-blur-xl overflow-hidden group">
+              
+              <!-- Subtle card interior decorative grid lines -->
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/10 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+
+              <!-- Top Studio Badge -->
+              <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-accent/80 animate-ping"></div>
+                  <span class="font-mono text-xs uppercase tracking-widest text-accent font-semibold">LEAD DESIGNER</span>
+                </div>
+                <div class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-neutral-400">
+                  EST. 2019
+                </div>
+              </div>
+
+              <!-- ========================================== -->
+              <!-- HERO PHOTO / AVATAR CONTAINER -->
+              <!-- Replace '/assets/hero/alom-placeholder.svg' with Alom's real photo (e.g. '/assets/hero/alom-hossain.jpg') -->
+              <!-- ========================================== -->
+              <div class="relative mx-auto w-52 h-52 sm:w-60 sm:h-60 mb-8 hero-avatar-wrap transition-transform duration-300">
+                <!-- Glowing Golden Halo -->
+                <div class="absolute -inset-3 rounded-full bg-gradient-to-tr from-accent via-accent-light to-accent opacity-30 blur-xl group-hover:opacity-50 transition-opacity duration-700 animate-pulse-subtle"></div>
+                
+                <!-- Circular Avatar Ring Frame -->
+                <div class="relative w-full h-full rounded-full p-1.5 bg-gradient-to-b from-accent via-accent/30 to-white/10 shadow-2xl overflow-hidden flex items-center justify-center">
+                  <!-- HERO PHOTO -->
+                  <img 
+                    id="hero-avatar-image"
+                    src="/assets/hero/alom-hossain.jpg" 
+                    alt="Alom Hossain — Graphic Designer & Brand Identity Specialist" 
+                    class="w-full h-full object-cover object-top rounded-full bg-neutral-950 transition-transform duration-500 group-hover:scale-105 shadow-inner"
+                  />
+                </div>
+
+                <!-- Verified Specialist Badge Over Avatar -->
+                <div class="absolute bottom-1 right-2 bg-neutral-950/90 border border-accent/60 rounded-full p-2 text-accent shadow-glow-sm" title="Verified Brand Identity Specialist">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Card Bio Label -->
+              <div class="text-center">
+                <h3 class="text-2xl font-bold text-white font-display tracking-tight mb-1">
+                  Alom Hossain
+                </h3>
+                <p class="text-xs font-mono text-accent uppercase tracking-widest mb-3">
+                  Brand Identity &middot; Logo Architecture
+                </p>
+                <p class="text-xs text-neutral-400 max-w-xs mx-auto leading-relaxed">
+                  Specialized in crafting clean, high-equity brand marks for ambitious startups, corporate leaders, and luxury firms.
+                </p>
+              </div>
+
+              <!-- Floating 3D Tool & Skill Badges (Parallax reactive) -->
+              <!-- Badge 1: Illustrator -->
+              <div class="absolute -top-4 -left-4 px-3.5 py-1.5 rounded-xl bg-neutral-900/90 border border-accent/40 shadow-xl backdrop-blur-md flex items-center gap-2 text-xs font-mono text-white pointer-events-none transition-transform duration-200"
+                   data-tilt-badge data-tilt-depth="30">
+                <span class="w-5 h-5 rounded bg-[#330000] text-[#FF9A00] font-black flex items-center justify-center text-[10px] border border-[#FF9A00]/40">Ai</span>
+                <span class="font-semibold text-[11px]">Vector Master</span>
+              </div>
+
+              <!-- Badge 2: Golden Ratio Grid -->
+              <div class="absolute -bottom-4 -right-2 px-3.5 py-1.5 rounded-xl bg-neutral-900/90 border border-accent/40 shadow-xl backdrop-blur-md flex items-center gap-2 text-xs font-mono text-accent pointer-events-none transition-transform duration-200"
+                   data-tilt-badge data-tilt-depth="-35">
+                <svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                </svg>
+                <span class="font-semibold text-[11px] text-white">Grid Precision</span>
+              </div>
+
+              <!-- Badge 3: Photoshop -->
+              <div class="absolute top-1/2 -right-6 px-3 py-1.5 rounded-xl bg-neutral-900/90 border border-white/10 shadow-xl backdrop-blur-md flex items-center gap-2 text-xs font-mono text-white pointer-events-none transition-transform duration-200"
+                   data-tilt-badge data-tilt-depth="22">
+                <span class="w-5 h-5 rounded bg-[#001E36] text-[#31A8FF] font-black flex items-center justify-center text-[10px] border border-[#31A8FF]/40">Ps</span>
+                <span class="text-[11px] text-neutral-300">Mockup Pro</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. SELECTED WORK / PROJECTS SECTION -->
+    <!-- ========================================== -->
+    <section id="work" class="py-28 px-6 md:px-12 max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 gsap-reveal">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-accent uppercase tracking-widest mb-4">
+            PORTFOLIO SHOWCASE
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight">
+            Selected <span class="font-serif italic font-normal text-accent">Projects</span>
+          </h2>
+        </div>
+        <p class="text-sm text-neutral-400 max-w-md">
+          A curated collection of logo marks, comprehensive rebranding cases, packaging, and brand identities crafted for visionary clients.
+        </p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div id="project-filters" class="flex items-center gap-2.5 overflow-x-auto pb-4 mb-12 scrollbar-none gsap-reveal">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Projects Grid (12 Items) -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Rendered dynamically from projectsData.js -->
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 6. SERVICES & EXPERTISE SECTION -->
+    <!-- ========================================== -->
+    <section id="services" class="py-28 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+      <div class="text-center max-w-3xl mx-auto mb-16 gsap-reveal">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-accent uppercase tracking-widest mb-4">
+          CAPABILITIES
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight mb-4">
+          Specialized Branding <span class="font-serif italic font-normal text-accent">Services</span>
+        </h2>
+        <p class="text-neutral-400 text-sm sm:text-base leading-relaxed">
+          From iconic standalone marks to comprehensive global identity guidelines, each deliverable is engineered to elevate your brand equity and outlast fleeting trends.
+        </p>
+      </div>
+
+      <!-- Services 3D Grid -->
+      <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Rendered dynamically from projectsData.js -->
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 7. ABOUT SECTION & SKILLS -->
+    <!-- ========================================== -->
+    <section id="about" class="py-28 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Studio Bio & Philosophy -->
+        <div class="lg:col-span-6 gsap-reveal">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-accent uppercase tracking-widest mb-6">
+            ABOUT ALOM HOSSAIN
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight leading-tight mb-6">
+            Designing for Distinction, Built on <span class="font-serif italic font-normal text-accent">Strategic Balance</span>.
+          </h2>
+
+          <div class="space-y-4 text-neutral-300 text-sm sm:text-base leading-relaxed mb-8">
+            <p>
+              I am a dedicated graphic designer with over 5 years of specialized experience in <strong>Logo Design, Rebranding, and Brand Identity Systems</strong>. I view brand identity not as mere decoration, but as the primary visual architecture of business reputation.
+            </p>
+            <p>
+              My design ethos merges <strong>Swiss modernist grid discipline</strong> with contemporary digital vitality. Every curve, kerning adjustment, and negative space relationship is calculated to ensure your mark remains iconic whether scaled to a 16-pixel browser favicon or embossed on luxury corporate packaging.
+            </p>
+            <p>
+              Whether partnering with funded tech startups, healthcare providers, or boutique luxury labels, I bring meticulous craft, rapid communication, and guaranteed vector precision to every collaboration.
+            </p>
+          </div>
+
+          <!-- Tools & Competency Badges -->
+          <div class="pt-6 border-t border-white/10">
+            <div class="text-xs font-mono uppercase text-accent tracking-wider mb-4 font-semibold">CORE TOOLKIT &amp; SKILLS</div>
+            <div class="flex flex-wrap gap-2.5">
+              <span class="px-3.5 py-1.5 rounded-lg bg-surface-card hairline-border text-xs font-medium text-white hover:border-accent/50 transition-colors">Adobe Illustrator</span>
+              <span class="px-3.5 py-1.5 rounded-lg bg-surface-card hairline-border text-xs font-medium text-white hover:border-accent/50 transition-colors">Adobe Photoshop</span>
+              <span class="px-3.5 py-1.5 rounded-lg bg-surface-card hairline-border text-xs font-medium text-white hover:border-accent/50 transition-colors">Adobe InDesign</span>
+              <span class="px-3.5 py-1.5 rounded-lg bg-surface-card hairline-border text-xs font-medium text-white hover:border-accent/50 transition-colors">Figma</span>
+              <span class="px-3.5 py-1.5 rounded-lg bg-surface-card hairline-border text-xs font-medium text-white hover:border-accent/50 transition-colors">Logo Architecture</span>
+              <span class="px-3.5 py-1.5 rounded-lg bg-surface-card hairline-border text-xs font-medium text-white hover:border-accent/50 transition-colors">Brand Guidelines</span>
+              <span class="px-3.5 py-1.5 rounded-lg bg-surface-card hairline-border text-xs font-medium text-white hover:border-accent/50 transition-colors">Stationery &amp; Print</span>
+              <span class="px-3.5 py-1.5 rounded-lg bg-surface-card hairline-border text-xs font-medium text-white hover:border-accent/50 transition-colors">Packaging Dielines</span>
+              <span class="px-3.5 py-1.5 rounded-lg bg-surface-card hairline-border text-xs font-medium text-white hover:border-accent/50 transition-colors">Color Theory &amp; Typography</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Brand Philosophy Pillars -->
+        <div class="lg:col-span-6 space-y-6 gsap-reveal">
+          <div class="p-8 rounded-2xl bg-surface-card hairline-border hover:hairline-border-gold transition-all duration-300">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="w-8 h-8 rounded-full bg-accent/10 border border-accent/30 text-accent flex items-center justify-center font-mono text-xs font-bold">01</span>
+              <h3 class="text-xl font-bold text-white font-display">Geometric Simplicity</h3>
+            </div>
+            <p class="text-sm text-neutral-400 leading-relaxed">
+              Complex logos fail in real-world applications. We distill ideas to their purest graphic essence so they register instantaneously in the human mind.
+            </p>
+          </div>
+
+          <div class="p-8 rounded-2xl bg-surface-card hairline-border hover:hairline-border-gold transition-all duration-300">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="w-8 h-8 rounded-full bg-accent/10 border border-accent/30 text-accent flex items-center justify-center font-mono text-xs font-bold">02</span>
+              <h3 class="text-xl font-bold text-white font-display">Mathematical Harmony</h3>
+            </div>
+            <p class="text-sm text-neutral-400 leading-relaxed">
+              Constructed using golden-ratio arcs, optical kerning balancing, and rigorous grid structures for timeless elegance across all viewports.
+            </p>
+          </div>
+
+          <div class="p-8 rounded-2xl bg-surface-card hairline-border hover:hairline-border-gold transition-all duration-300">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="w-8 h-8 rounded-full bg-accent/10 border border-accent/30 text-accent flex items-center justify-center font-mono text-xs font-bold">03</span>
+              <h3 class="text-xl font-bold text-white font-display">Production-Ready Precision</h3>
+            </div>
+            <p class="text-sm text-neutral-400 leading-relaxed">
+              Every deliverable includes organized CMYK, RGB, Pantone, and vector master assets formatted precisely for immediate commercial rollout.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 8. PROCESS SECTION -->
+    <!-- ========================================== -->
+    <section id="process" class="py-28 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+      <div class="text-center max-w-3xl mx-auto mb-16 gsap-reveal">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-accent uppercase tracking-widest mb-4">
+          WORKFLOW
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight mb-4">
+          The 4-Stage <span class="font-serif italic font-normal text-accent">Identity Formula</span>
+        </h2>
+        <p class="text-neutral-400 text-sm sm:text-base leading-relaxed">
+          A disciplined, collaborative roadmap engineered to eliminate guesswork and deliver guaranteed brand excellence.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 rounded-2xl bg-surface-card/60 hairline-border relative overflow-hidden group hover:hairline-border-gold transition-all duration-300 gsap-reveal">
+          <div class="text-4xl font-extrabold font-mono text-accent/20 mb-4 group-hover:text-accent/40 transition-colors">01</div>
+          <h3 class="text-lg font-bold text-white mb-2 font-display">Discovery &amp; Strategy</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Uncovering brand positioning, core archetypes, audience psychology, and competitive differentiation.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-surface-card/60 hairline-border relative overflow-hidden group hover:hairline-border-gold transition-all duration-300 gsap-reveal">
+          <div class="text-4xl font-extrabold font-mono text-accent/20 mb-4 group-hover:text-accent/40 transition-colors">02</div>
+          <h3 class="text-lg font-bold text-white mb-2 font-display">Concept Exploration</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Dozens of analog sketches, monograms, symbolisms, and typographic lockups to uncover distinct directions.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-surface-card/60 hairline-border relative overflow-hidden group hover:hairline-border-gold transition-all duration-300 gsap-reveal">
+          <div class="text-4xl font-extrabold font-mono text-accent/20 mb-4 group-hover:text-accent/40 transition-colors">03</div>
+          <h3 class="text-lg font-bold text-white mb-2 font-display">Vector Crafting</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Mathematical grid geometry, optical curve adjustments, negative space calibration, and vector perfection.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-surface-card/60 hairline-border relative overflow-hidden group hover:hairline-border-gold transition-all duration-300 gsap-reveal">
+          <div class="text-4xl font-extrabold font-mono text-accent/20 mb-4 group-hover:text-accent/40 transition-colors">04</div>
+          <h3 class="text-lg font-bold text-white mb-2 font-display">System &amp; Guidelines</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Full color palettes, typography hierarchy, collateral templates, comprehensive guidelines, and master assets.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 9. CONTACT SECTION + WORKING FORM -->
+    <!-- ========================================== -->
+    <section id="contact" class="py-28 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Left: Pitch & Upwork CTA Direct Link -->
+        <div class="lg:col-span-5 gsap-reveal">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-accent uppercase tracking-widest mb-6">
+            START A COLLABORATION
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight leading-tight mb-6">
+            Let’s Build a Brand That <span class="font-serif italic font-normal text-accent">Commands Attention</span>.
+          </h2>
+
+          <p class="text-neutral-400 text-sm sm:text-base leading-relaxed mb-8">
+            Ready to give your business an iconic visual foundation? Whether you need a ground-up identity system or a high-impact rebrand, let's connect.
+          </p>
+
+          <!-- Primary CTA: Upwork Direct Profile Box -->
+          <div class="p-6 rounded-2xl bg-surface-card hairline-border-gold mb-8 relative overflow-hidden group shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono uppercase tracking-widest text-accent font-semibold">PREMIUM FREELANCE PROFILE</span>
+              <span class="flex items-center gap-1 text-[11px] font-mono text-emerald-400">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Upwork Verified
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-2 font-display">
+              Work with Alom on Upwork
+            </h3>
+            <p class="text-xs text-neutral-400 mb-5 leading-relaxed">
+              Enjoy complete escrow security, milestone-based delivery, and verified client reviews on Upwork.
+            </p>
+
+            <a href="https://www.upwork.com/freelancers/~01e5113de9a8f9e445" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="magnetic inline-flex items-center justify-center gap-2.5 w-full py-3.5 px-6 rounded-xl bg-accent text-neutral-950 font-bold text-xs uppercase tracking-wider hover:bg-accent-hover hover:shadow-glow-sm transition-all duration-300">
+              <span>View Upwork Profile &amp; Invite</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Direct Contacts -->
+          <div class="space-y-3 text-xs font-mono text-neutral-400">
+            <div class="flex items-center gap-3">
+              <span class="text-accent uppercase tracking-wider w-20">Location:</span>
+              <span class="text-white">Worldwide / Remote Available</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-accent uppercase tracking-wider w-20">Turnaround:</span>
+              <span class="text-white">Fast 5–14 Business Days</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-accent uppercase tracking-wider w-20">Direct Email:</span>
+              <a href="mailto:contact@alomhossain.com" class="text-white hover:text-accent transition-colors">contact@alomhossain.com</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Working Contact Form -->
+        <div class="lg:col-span-7 gsap-reveal">
+          <div class="p-8 sm:p-10 rounded-3xl bg-surface-card hairline-border relative shadow-2xl">
+            <h3 class="text-2xl font-bold text-white font-display mb-2">
+              Send a Project Brief
+            </h3>
+            <p class="text-xs text-neutral-400 mb-8">
+              Fill out the details below and I will respond within 24 business hours.
+            </p>
+
+            <form id="contact-form" class="space-y-6">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Name -->
+                <div>
+                  <label for="name" class="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-2">Your Name *</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required 
+                    placeholder="e.g. Marcus Vance"
+                    class="w-full px-4 py-3.5 rounded-xl bg-neutral-900/80 hairline-border text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                  />
+                </div>
+
+                <!-- Email -->
+                <div>
+                  <label for="email" class="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-2">Your Email *</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    placeholder="marcus@company.com"
+                    class="w-full px-4 py-3.5 rounded-xl bg-neutral-900/80 hairline-border text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                  />
+                </div>
+              </div>
+
+              <!-- Project Type -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="project-type" class="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-2">Project Service *</label>
+                  <select 
+                    id="project-type" 
+                    name="project-type" 
+                    required 
+                    class="w-full px-4 py-3.5 rounded-xl bg-neutral-900 hairline-border text-white text-sm focus:outline-none focus:border-accent transition-colors">
+                    <option value="" disabled selected>Select Primary Need</option>
+                    <option value="logo-design">Logo Design &amp; Monogram</option>
+                    <option value="rebranding">Rebranding &amp; Refresh</option>
+                    <option value="brand-identity">Complete Brand Identity System</option>
+                    <option value="brand-guidelines">Brand Guidelines &amp; Manual</option>
+                    <option value="stationery">Stationery &amp; Business Cards</option>
+                    <option value="packaging">Packaging &amp; Label Design</option>
+                    <option value="other">Other Brand Design Inquiry</option>
+                  </select>
+                </div>
+
+                <!-- Estimated Budget Range -->
+                <div>
+                  <label for="budget" class="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-2">Estimated Budget</label>
+                  <select 
+                    id="budget" 
+                    name="budget" 
+                    class="w-full px-4 py-3.5 rounded-xl bg-neutral-900 hairline-border text-white text-sm focus:outline-none focus:border-accent transition-colors">
+                    <option value="flexible">$500 – $1,500</option>
+                    <option value="standard" selected>$1,500 – $3,500</option>
+                    <option value="enterprise">$3,500 – $7,500+</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div>
+                <label for="message" class="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-2">Project Details &amp; Vision *</label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  rows="4" 
+                  required 
+                  placeholder="Describe your company, target audience, brand goals, and expected timeline..."
+                  class="w-full px-4 py-3.5 rounded-xl bg-neutral-900/80 hairline-border text-white text-sm focus:outline-none focus:border-accent transition-colors resize-none"
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button 
+                type="submit" 
+                id="contact-submit-btn" 
+                class="magnetic w-full py-4 px-8 rounded-xl bg-accent text-neutral-950 font-bold text-sm uppercase tracking-wider hover:bg-accent-hover hover:shadow-glow-sm transition-all duration-300 flex items-center justify-center gap-2">
+                <span>Send Project Inquiry</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </form>
+
+            <!-- Success Feedback Toast -->
+            <div id="contact-toast" class="opacity-0 pointer-events-none translate-y-4 transition-all duration-500 mt-6 p-4 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-200 flex items-center gap-3">
+              <svg class="w-6 h-6 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <div>
+                <div class="font-bold text-white text-xs">Inquiry Dispatched Successfully!</div>
+                <div class="text-[11px] text-emerald-300">Thank you! Alom will review your project brief and get back to you shortly.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- 10. CASE STUDY MODAL DIALOG -->
+  <!-- ========================================== -->
+  <div id="project-modal" class="hidden fixed inset-0 z-[9990] flex items-center justify-center p-4 sm:p-6 md:p-10" role="dialog" aria-modal="true" aria-hidden="true">
+    <!-- Backdrop blur -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-neutral-950/90 backdrop-blur-md cursor-pointer"></div>
+
+    <!-- Modal Content Box -->
+    <div id="modal-content" class="relative w-full max-w-4xl max-h-[90vh] bg-surface-card rounded-3xl hairline-border-gold shadow-2xl overflow-hidden flex flex-col z-10">
+      
+      <!-- Modal Header Bar -->
+      <div class="flex items-center justify-between p-6 border-b border-white/10 bg-neutral-900/60">
+        <div class="flex items-center gap-3">
+          <span id="modal-tag" class="px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider bg-accent/10 border border-accent/30 text-accent"></span>
+          <span id="modal-category" class="text-xs font-mono text-neutral-400 uppercase tracking-wider"></span>
+        </div>
+
+        <button id="modal-close-btn" aria-label="Close Case Study" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-neutral-300 hover:text-white transition-colors">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Scrollable Body -->
+      <div class="overflow-y-auto p-6 sm:p-8 space-y-8">
+        
+        <!-- Large Showcase Image Preview -->
+        <div class="rounded-2xl overflow-hidden bg-neutral-950 border border-white/10 max-h-[480px] flex items-center justify-center">
+          <img id="modal-image" src="" alt="Project Preview" class="w-full h-full object-contain max-h-[480px]" />
+        </div>
+
+        <!-- Project Title & Subtitle -->
+        <div>
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-2">
+            <h2 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-white font-display"></h2>
+            <div class="flex items-center gap-3 text-xs font-mono text-neutral-400">
+              <span id="modal-client" class="text-accent font-medium"></span>
+              <span>&bull;</span>
+              <span id="modal-year"></span>
+            </div>
+          </div>
+          <p id="modal-summary" class="text-neutral-300 text-sm sm:text-base leading-relaxed"></p>
+        </div>
+
+        <!-- Challenge & Solution Columns -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/5">
+            <div class="text-xs font-mono uppercase text-accent tracking-wider font-semibold mb-2">The Challenge</div>
+            <p id="modal-challenge" class="text-xs sm:text-sm text-neutral-300 leading-relaxed"></p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/5">
+            <div class="text-xs font-mono uppercase text-accent tracking-wider font-semibold mb-2">The Strategic Solution</div>
+            <p id="modal-solution" class="text-xs sm:text-sm text-neutral-300 leading-relaxed"></p>
+          </div>
+        </div>
+
+        <!-- Key Deliverables -->
+        <div>
+          <div class="text-xs font-mono uppercase text-neutral-400 tracking-wider font-semibold mb-3">Project Deliverables</div>
+          <ul id="modal-deliverables" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></ul>
+        </div>
+
+        <!-- Color Palette Swatches -->
+        <div>
+          <div class="text-xs font-mono uppercase text-neutral-400 tracking-wider font-semibold mb-3">Color System &amp; Palette</div>
+          <div id="modal-palette" class="flex items-center gap-4 flex-wrap"></div>
+        </div>
+
+        <!-- Tools Used -->
+        <div>
+          <div class="text-xs font-mono uppercase text-neutral-400 tracking-wider font-semibold mb-3">Software &amp; Tools</div>
+          <div id="modal-tools" class="flex items-center gap-2 flex-wrap"></div>
+        </div>
+
+        <!-- Modal CTA -->
+        <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="text-xs text-neutral-400 text-center sm:text-left">
+            Have a project in this category? Let's discuss scope and timeline.
+          </div>
+          <a href="https://www.upwork.com/freelancers/~01e5113de9a8f9e445" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3 rounded-full bg-accent text-neutral-950 font-bold text-xs uppercase tracking-wider hover:bg-accent-hover transition-colors text-center shadow-md">
+            Discuss on Upwork
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 11. FOOTER -->
+  <!-- ========================================== -->
+  <footer class="relative z-10 border-t border-white/10 py-16 px-6 md:px-12 bg-neutral-950/80">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+      
+      <!-- Brand & Copyright -->
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-full bg-surface-card border border-accent/60 overflow-hidden flex items-center justify-center shadow-glow-sm">
+          <img src="/assets/hero/alom-hossain.jpg" alt="Alom Hossain" class="w-full h-full object-cover object-top" />
+        </div>
+        <div class="text-xs text-neutral-400">
+          <div class="text-white font-medium font-display">Alom Hossain</div>
+          <div>&copy; 2024–2026 Alom Hossain. All rights reserved.</div>
+        </div>
+      </div>
+
+      <!-- Social & Professional Profiles -->
+      <div class="flex items-center gap-6 text-xs font-mono uppercase tracking-wider text-neutral-400">
+        <a href="https://www.upwork.com/freelancers/~01e5113de9a8f9e445" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors magnetic">Upwork</a>
+        <a href="https://behance.net" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors magnetic">Behance</a>
+        <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors magnetic">Dribbble</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors magnetic">LinkedIn</a>
+      </div>
+
+      <!-- Back to top -->
+      <div>
+        <a href="#" class="inline-flex items-center gap-2 text-xs font-mono text-neutral-400 hover:text-accent transition-colors magnetic">
+          <span>Back to Top</span>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Master Application Script -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
